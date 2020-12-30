@@ -1,0 +1,56 @@
+<html lang="{{ $lang }}">
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+		
+		<!-- Header attributes -->
+		<title>My 2020 Visualized - Hiking</title>
+		
+		<!-- Libraries -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.bundle.min.js" integrity="sha512-SuxO9djzjML6b9w9/I07IWnLnQhgyYVSpHZx0JV97kGBfTIsUYlWflyuW4ypnvhBrslz1yJ3R+S14fdCWmSmSA==" crossorigin="anonymous"></script>
+        
+    </head>
+    <body>
+		<div style="padding:20px;">
+			<canvas id="hikingDistanceChart" width="400" height="400"></canvas>
+		</div>
+		
+		<script>
+			
+			//-----------------------------------------------------------------
+			// Chart for Hiking Distances
+			//-----------------------------------------------------------------
+			var hikingDistanceContext = document.getElementById('hikingDistanceChart');
+			hikingDistanceContext.height = 150;
+			
+			let hikingDistanceData = {"datasets": [{"label": "Tour 1", "stack": "Stack 0", "backgroundColor": "rgba(255, 20, 0, 0.6)", "borderColor": "rgba(255, 20, 0, 1)", "borderWidth": 1, "data": ["0", "0", "19.9", "0", "16", "0", "8", "0", "9.5", "13.7", "23", "0", "0", "11.5", "17.6", "0", "14.7", "8.3", "0", "0", "16", "9.6", "0", "0", "0", "0", "0", "0", "14.3", "11.1", "0", "15.4", "17.8", "14.1", "0", "10.1"]}, {"label": "Tour 2", "stack": "Stack 0", "backgroundColor": "rgba(255, 40, 0, 0.6)", "borderColor": "rgba(255, 40, 0, 1)", "borderWidth": 1, "data": ["0", "0", "15.2", "0", "0", "0", "0", "0", "11.5", "20.2", "0", "0", "0", "0", "10", "0", "10.1", "9.9", "0", "0", "18.5", "11.5", "0", "0", "0", "0", "0", "0", "12.7", "13.8", "0", "0", "7.8", "0", "0", "0"]}, {"label": "Tour 3", "stack": "Stack 0", "backgroundColor": "rgba(255, 60, 0, 0.6)", "borderColor": "rgba(255, 60, 0, 1)", "borderWidth": 1, "data": ["0", "0", "0", "0", "0", "0", "0", "0", "10.1", "0", "0", "0", "0", "0", "0", "0", "21.2", "12.7", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "14.5", "0", "0", "18.9", "0", "0", "0"]}, {"label": "Tour 4", "stack": "Stack 0", "backgroundColor": "rgba(255, 80, 0, 0.6)", "borderColor": "rgba(255, 80, 0, 1)", "borderWidth": 1, "data": ["0", "0", "0", "0", "0", "0", "0", "0", "11.5", "0", "0", "0", "0", "0", "0", "0", "0", "8.9", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "15.3", "0", "0", "10.8", "0", "0", "0"]}, {"label": "Tour 5", "stack": "Stack 0", "backgroundColor": "rgba(255, 100, 0, 0.6)", "borderColor": "rgba(255, 100, 0, 1)", "borderWidth": 1, "data": ["0", "0", "0", "0", "0", "0", "0", "0", "10", "0", "0", "0", "0", "0", "0", "0", "0", "15.6", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "15.1", "0", "0", "24", "0", "0", "0"]}, {"label": "Tour 6", "stack": "Stack 0", "backgroundColor": "rgba(255, 120, 0, 0.6)", "borderColor": "rgba(255, 120, 0, 1)", "borderWidth": 1, "data": ["0", "0", "0", "0", "0", "0", "0", "0", "14.6", "0", "0", "0", "0", "0", "0", "0", "0", "11.4", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "15.3", "0", "0", "0"]}, {"label": "Tour 7", "stack": "Stack 0", "backgroundColor": "rgba(255, 140, 0, 0.6)", "borderColor": "rgba(255, 140, 0, 1)", "borderWidth": 1, "data": ["0", "0", "0", "0", "0", "0", "0", "0", "11.6", "0", "0", "0", "0", "0", "0", "0", "0", "9.3", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "21.5", "0", "0", "0"]}, {"label": "Tour 8", "stack": "Stack 0", "backgroundColor": "rgba(255, 160, 0, 0.6)", "borderColor": "rgba(255, 160, 0, 1)", "borderWidth": 1, "data": ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "15.9", "0", "0", "0"]}, {"label": "Tour 9", "stack": "Stack 0", "backgroundColor": "rgba(255, 180, 0, 0.6)", "borderColor": "rgba(255, 180, 0, 1)", "borderWidth": 1, "data": ["0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "0", "22.9", "0", "0", "0"]}], "labels": ["2018-1", "2018-2", "2018-3", "2018-4", "2018-5", "2018-6", "2018-7", "2018-8", "2018-9", "2018-10", "2018-11", "2018-12", "2019-1", "2019-2", "2019-3", "2019-4", "2019-5", "2019-6", "2019-7", "2019-8", "2019-9", "2019-10", "2019-11", "2019-12", "2020-1", "2020-2", "2020-3", "2020-4", "2020-5", "2020-6", "2020-7", "2020-8", "2020-9", "2020-10", "2020-11", "2020-12"]};
+			
+            let hikingDistanceChart = new Chart(
+				hikingDistanceContext, 
+				{
+					type: 'bar',
+					data: hikingDistanceData,
+					options: {
+						responsive: true,
+						layout: {},
+						scales: 
+						{
+							xAxes: [{
+								stacked: true,
+							}],
+							yAxes: [{
+								stacked: true,
+								scaleLabel: {
+									display: true,
+									labelString: 'Distance [km]'
+								}
+							}]
+						}
+					}
+				}
+			);
+			
+        </script>
+    </body>
+</html>
